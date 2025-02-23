@@ -12,13 +12,15 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 all: $(NAME)
 
-bonus: $(CHECK)
-
 $(NAME): $(OBJS_SRC) $(LIBFT)
 		$(CC) $(CFLAGS) $(OBJS_SRC) $(LIBFT) -o $(NAME) -lreadline
 
 $(LIBFT): $(LIBFT_OBJS)
 		$(MAKE) -C $(LIBFT_PATH) all
+
+v:	all
+		valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --trace-children-skip='/bin/,/sbin/' --keep-debuginfo=yes \
+		--suppressions=readline.supp --track-fds=yes ./$(NAME)
 
 src/%.o: src/%.c
 		$(CC) $(CFLAGS) -c $< -o $@
