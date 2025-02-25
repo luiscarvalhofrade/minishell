@@ -21,12 +21,17 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)envp;
 	while (1)
 	{
-		line = readline("Prompt > ");
+	
+		line = ft_capture_command();
+		//Deixa essa comigo. Depois eu vou expandir essa função para pegar
+		//heredocs e continuar a preencher o comando se a linha terminar com | 
 		if (!line)
-			break ;
-		if (*line)
-			add_history(line);
-		printf("Salvo no histórico: %s\n", line);
+			break ;	
+		add_history(line);
+		ft_run_command(line);
+		//@luiscarvalhofrade você pode começar a fazer essa função, considerando
+		//por exemplo if line == echo -> ft_echo(char *input, int fd). Pode
+		//começar pelos builtins mais simples, tipo, echo, pwd...
 		free(line);
 	}
 	rl_clear_history();

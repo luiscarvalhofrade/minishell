@@ -14,3 +14,7 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
+
+char *ft_capture_command(void);
+char *ft_run_command(char *line);

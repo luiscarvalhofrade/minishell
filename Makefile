@@ -1,4 +1,6 @@
 MAIN =  src/minishell.c \
+		src/ft_capture_command.c \
+		src/ft_run_command.c \
 
 OBJS_SRC =	$(MAIN:.c=.o)
 
